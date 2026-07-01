@@ -10,7 +10,19 @@ function Navbar({ darkMode, setDarkMode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const links = ["Home", "Features", "Pricing", "Testimonials", "Contact"];
+  const links = [
+    { label: "Home", id: "home" },
+    { label: "Features", id: "features" },
+    { label: "Pricing", id: "pricing" },
+    { label: "Testimonials", id: "testimonials" },
+    { label: "Contact", id: "contact" },
+  ];
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
@@ -21,18 +33,23 @@ function Navbar({ darkMode, setDarkMode }) {
       <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="text-3xl font-extrabold text-blue-600 cursor-pointer">
+        <button
+          onClick={() => scrollTo("home")}
+          className="text-3xl font-extrabold text-blue-600 cursor-pointer"
+        >
           SaaSify
-        </div>
+        </button>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-8 font-medium text-gray-700 dark:text-gray-300">
           {links.map((link) => (
-            <li
-              key={link}
-              className="hover:text-blue-600 cursor-pointer transition"
-            >
-              {link}
+            <li key={link.id}>
+              <button
+                onClick={() => scrollTo(link.id)}
+                className="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition"
+              >
+                {link.label}
+              </button>
             </li>
           ))}
         </ul>
@@ -40,7 +57,7 @@ function Navbar({ darkMode, setDarkMode }) {
         {/* Right Side */}
         <div className="flex items-center gap-3">
 
-          {/* Dark Mode Toggle */}
+          {/* Dark Mode */}
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:scale-110 transition text-xl"
@@ -52,13 +69,16 @@ function Navbar({ darkMode, setDarkMode }) {
             Login
           </button>
 
-          <button className="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 hover:scale-105 transition shadow-lg">
+          <button
+            onClick={() => scrollTo("pricing")}
+            className="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 hover:scale-105 transition shadow-lg"
+          >
             Get Started →
           </button>
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-2xl"
+            className="md:hidden text-2xl text-gray-700 dark:text-gray-300"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? "✕" : "☰"}
@@ -70,16 +90,19 @@ function Navbar({ darkMode, setDarkMode }) {
       {menuOpen && (
         <div className="md:hidden bg-white dark:bg-gray-950 border-t dark:border-gray-800 px-8 py-5 flex flex-col gap-4">
           {links.map((link) => (
-            <span
-              key={link}
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 cursor-pointer transition"
+            <button
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              className="text-left text-gray-700 dark:text-gray-300 hover:text-blue-600 transition font-medium py-1"
             >
-              {link}
-            </span>
+              {link.label}
+            </button>
           ))}
-          <button className="bg-blue-600 text-white py-3 rounded-xl">
-            Get Started
+          <button
+            onClick={() => scrollTo("pricing")}
+            className="bg-blue-600 text-white py-3 rounded-xl font-semibold"
+          >
+            Get Started →
           </button>
         </div>
       )}
