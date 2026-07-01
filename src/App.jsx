@@ -1,47 +1,48 @@
+import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Companies from "./components/Companies";
+import Features from "./components/Features";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowTop(window.scrollY > 400);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b">
-        <h1 className="text-2xl font-bold text-blue-600">
-          SaaSify
-        </h1>
+    <div className={darkMode ? "dark" : ""}>
+      <div className="bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-500">
 
-        <div className="flex items-center gap-8">
-          <a href="#" className="hover:text-blue-600">
-            Home
-          </a>
-          <a href="#" className="hover:text-blue-600">
-            Features
-          </a>
-          <a href="#" className="hover:text-blue-600">
-            Pricing
-          </a>
-          <a href="#" className="hover:text-blue-600">
-            Contact
-          </a>
-        </div>
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Hero />
+        <Companies />
+        <Features />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+        <Footer />
 
-        <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
-          Get Started
-        </button>
-      </nav>
+        {showTop && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg shadow-blue-500/30 hover:scale-110 transition flex items-center justify-center text-xl"
+          >
+            ↑
+          </button>
+        )}
 
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-24 px-6">
-        <h1 className="text-5xl font-bold text-gray-900 mb-6">
-          Build Your SaaS Faster 🚀
-        </h1>
-
-        <p className="text-lg text-gray-600 max-w-2xl mb-8">
-          Launch your next SaaS product with a modern landing page built using
-          React and Tailwind CSS.
-        </p>
-
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
-          Start Free Trial
-        </button>
-      </section>
+      </div>
     </div>
   );
 }
