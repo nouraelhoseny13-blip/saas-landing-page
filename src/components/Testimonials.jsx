@@ -8,7 +8,8 @@ function Testimonials() {
   ];
 
   return (
-    <section className="py-28 bg-white dark:bg-gray-950">
+    <section id="testimonials" className="py-28 bg-white dark:bg-gray-950">
+      
       <div className="max-w-7xl mx-auto px-8">
 
         <motion.div

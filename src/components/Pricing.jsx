@@ -35,7 +35,8 @@ function Pricing() {
   ];
 
   return (
-    <section className="py-28 bg-gray-50 dark:bg-gray-900">
+    <section id="pricing" className="py-28 bg-gray-50 dark:bg-gray-900">
+      
       <div className="max-w-7xl mx-auto px-8">
 
         <motion.div

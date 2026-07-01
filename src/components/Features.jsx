@@ -11,7 +11,7 @@ function Features() {
   ];
 
   return (
-    <section className="relative py-28 bg-white dark:bg-gray-950 overflow-hidden">
+    <section id="features" className="relative py-28 bg-white dark:bg-gray-950 overflow-hidden">
 
       <div className="absolute -top-20 left-0 w-72 h-72 bg-blue-100 dark:bg-blue-900/20 rounded-full blur-3xl opacity-50"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-100 dark:bg-purple-900/20 rounded-full blur-3xl opacity-50"></div>

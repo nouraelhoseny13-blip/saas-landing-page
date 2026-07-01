@@ -5,7 +5,8 @@ function Contact() {
   const [sent, setSent] = useState(false);
 
   return (
-    <section className="py-28 bg-white dark:bg-gray-950">
+    <section id="contact" className="py-28 bg-white dark:bg-gray-950">
+      
       <div className="max-w-7xl mx-auto px-8">
 
         <motion.div

@@ -151,8 +151,10 @@ const GlowingMiniCards = () => {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 pb-16">
-
+    <section
+      id="home"
+      className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 pt-24 pb-16"
+    >
       {/* Background Blobs */}
       <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-400/20 blur-3xl"></div>
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-400/20 blur-3xl"></div>
@@ -203,12 +205,16 @@ function Hero() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold overflow-hidden group"
+                onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+                className="relative bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold overflow-hidden group shadow-lg shadow-blue-500/30"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-violet-600 opacity-0 group-hover:opacity-100 transition duration-300"></span>
                 <span className="relative flex items-center gap-2">
                   Start Free Trial
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
                     →
                   </motion.span>
                 </span>
