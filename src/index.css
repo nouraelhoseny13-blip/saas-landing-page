@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* أضيفي السطر ده */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
